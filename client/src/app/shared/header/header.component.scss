@@ -1,0 +1,31 @@
+@import "../../../variables";
+
+.navigation {
+  background: #66ff66;
+  border: none;
+  border-radius: 0;
+
+  .navbar-header {
+    overflow: hidden;
+    padding-bottom: 15px;
+
+    .logo {
+      color: white;
+      font: 2.5em $font;
+      padding-right: 15px;
+    }
+  }
+
+  .navbar-nav > li > a {
+    color: white;
+    font: 1.7em $font;
+
+  }
+}
+
+@media (max-width: 48em) {
+
+  ul li.nav-item.user {
+    padding-left: 15px;
+  }
+}
