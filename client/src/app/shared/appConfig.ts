@@ -1,3 +1,3 @@
-/**
- * Created by Alexey on 08-Jul-17.
- */
+export class AppConfig {
+    public readonly urlServer = "http://localhost:8080";
+}
