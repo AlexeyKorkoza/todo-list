@@ -69,7 +69,7 @@ module.exports = (passport) => {
 
             const userData = {
                 'username': result[0].username,
-                'token': token.generate
+                'token': token.generate(result[0].user_id, result[0].username)
             };
 
             return done(null, userData);
