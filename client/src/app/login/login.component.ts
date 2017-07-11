@@ -32,6 +32,7 @@ export class LoginComponent {
           this.router.navigateByUrl('/');
         },
         err => {
+          console.log(err);
           this.message = err._body;
         }
     )
