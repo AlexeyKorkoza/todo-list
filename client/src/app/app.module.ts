@@ -6,17 +6,22 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component'
+import { LoginComponent } from './login/login.component';
 
 import { UserService } from './shared/services/user.service';
+import { AuthService } from './shared/services/auth.service';
+import { JwtService } from './shared/services/jwt.service';
 
 import { AppConfig } from './shared/appConfig';
+
+import { ShowAuthedDirective } from './shared/directive/auth.directive';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
@@ -25,7 +30,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     ShowAuthedDirective,
     RegistrationComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     UserService,
+    AuthService,
+    JwtService,
     AppConfig
   ],
   bootstrap: [AppComponent]
