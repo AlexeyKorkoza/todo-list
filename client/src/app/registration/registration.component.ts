@@ -28,14 +28,13 @@ export class RegistrationComponent {
   }
 
   register(user: User) {
+    this.errorMessage = '';
     this.userService.create(user).subscribe(
         () => {
           this.router.navigateByUrl('/');
         },
         err => {
-          if (err.status === 409) {
-            this.errorMessage = 'This User is already taken';
-          }
+          this.errorMessage = 'User already was created';
         }
     );
   }
