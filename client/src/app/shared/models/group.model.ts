@@ -1,4 +1,4 @@
 export class Group {
-    id: number;
+    group_id: number;
     name: string;
 }
