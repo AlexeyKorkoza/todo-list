@@ -1,0 +1,6 @@
+@import 'variables';
+
+@mixin error {
+  font: bold 1.5em $font;
+  color: red;
+}
