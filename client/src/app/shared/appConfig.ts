@@ -1,3 +1,3 @@
 export class AppConfig {
-    public readonly urlServer = "http://localhost:8080";
+    public readonly urlServer = 'http://localhost:8080';
 }
