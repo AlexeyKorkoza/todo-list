@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleState() {
-    let bool = this.isIn;
+    const bool = this.isIn;
     if (bool === false) {
       this.isIn = true;
     } else {
