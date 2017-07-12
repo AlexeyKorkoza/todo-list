@@ -1,0 +1,14 @@
+<div class="groups">
+    <app-group class="group" *ngFor="let group of groups; let index = index" [group]="group">
+    </app-group>
+
+    <div [hidden]="groupsLoaded">
+        <p>Loading groups...</p>
+    </div>
+
+    <div [hidden]="!groupsLoaded || groups.length">
+        <p>No groups are here... yet.</p>
+        <p>No groups are here... yet.</p>
+    </div>
+
+</div>

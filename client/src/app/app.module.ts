@@ -19,12 +19,15 @@ import { GroupService } from './shared/services/group.service';
 import { AppConfig } from './shared/appConfig';
 
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
+import { GroupListComponent } from './group/group-list.component';
+import { GroupComponent } from './group/group.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'create_group', component: EditorGroupComponent }
+  { path: 'create_group', component: EditorGroupComponent },
+  { path: 'edit/:id', component: EditorGroupComponent }
 ];
 
 @NgModule({
@@ -35,7 +38,9 @@ const appRoutes: Routes = [
     RegistrationComponent,
     HomeComponent,
     LoginComponent,
-    EditorGroupComponent
+    EditorGroupComponent,
+    GroupListComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

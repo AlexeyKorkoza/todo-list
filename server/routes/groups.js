@@ -5,9 +5,29 @@ const connection = mysql.createConnection(nconf.get('db'));
 const token = require('../middlewares/token');
 const router = express();
 
+router.get('/', token.required, getGroups);
 router.post('/create', token.required, createGroup);
 
 module.exports = router;
+
+function getGroups(req, res) {
+
+    const sql = 'select * from `groups` where `user_id` = ?';
+    connection.query(sql, [req.payload.id], (err, results) => {
+
+        if (err) {
+            res.status(400);
+        }
+
+        if (results && results.length > 0) {
+            res.status(200).json(results);
+        }
+
+        if (results && results.length === 0) {
+            res.status(200);
+        }
+    });
+}
 
 function createGroup(req, res) {
 
