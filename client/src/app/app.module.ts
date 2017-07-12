@@ -9,10 +9,12 @@ import { HeaderComponent } from './shared/header/header.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component';
+import { EditorGroupComponent } from './group/editor-group.component';
 
 import { UserService } from './shared/services/user.service';
 import { AuthService } from './shared/services/auth.service';
 import { JwtService } from './shared/services/jwt.service';
+import { GroupService } from './shared/services/group.service';
 
 import { AppConfig } from './shared/appConfig';
 
@@ -21,7 +23,8 @@ import { ShowAuthedDirective } from './shared/directive/auth.directive';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'create_group', component: EditorGroupComponent }
 ];
 
 @NgModule({
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
     ShowAuthedDirective,
     RegistrationComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    EditorGroupComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ const appRoutes: Routes = [
     UserService,
     AuthService,
     JwtService,
+    GroupService,
     AppConfig
   ],
   bootstrap: [AppComponent]
