@@ -18,8 +18,12 @@ export class GroupService {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
+    console.log(group);
     if (!group.group_id) {
       return this.http.post(this.appConfig.urlServer + '/groups/create', group, {headers: headers})
+          .map((res: Response) => res.json())
+    } else {
+      return this.http.put(this.appConfig.urlServer + '/groups/group/' + group.group_id, group, {headers: headers})
           .map((res: Response) => res.json())
     }
   }
@@ -31,6 +35,14 @@ export class GroupService {
     return this.http.get(this.appConfig.urlServer + '/groups', {headers: headers})
         .map((res: Response) => res.json())
 
+  }
+
+  getGroup(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/groups/group/' + id, {headers: headers})
+        .map((res: Response) => res.json())
   }
 
 }
