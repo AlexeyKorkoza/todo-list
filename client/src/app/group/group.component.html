@@ -1,0 +1,3 @@
+<span class="name">{{group.name}}</span>
+<i class="fa fa-pencil" aria-hidden="true" [routerLink]="['edit', group.group_id]" (click)="edit(group)"></i>
+<i class="fa fa-times" aria-hidden="true" (click)="remove(group.group_id, index)"></i>

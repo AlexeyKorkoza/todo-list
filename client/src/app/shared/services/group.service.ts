@@ -24,4 +24,13 @@ export class GroupService {
     }
   }
 
+  getGroups() {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/groups', {headers: headers})
+        .map((res: Response) => res.json())
+
+  }
+
 }
