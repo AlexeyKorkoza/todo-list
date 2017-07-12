@@ -9,6 +9,7 @@ router.get('/', token.required, getGroups);
 router.get('/group/:id', token.required, getGroup);
 router.post('/create', token.required, createGroup);
 router.put('/group/:id', token.required, updateGroup);
+router.delete('/group/:id', token.required, removeGroup);
 
 module.exports = router;
 
@@ -43,7 +44,7 @@ function getGroups(req, res) {
         }
 
         if (results && results.length === 0) {
-            res.status(200);
+            res.status(200).json('Empty');
         }
     });
 }
@@ -96,5 +97,21 @@ function updateGroup(req, res) {
             res.status(200);
         }
 
+    });
+}
+
+function removeGroup(req, res) {
+
+    const id = req.headers.id.split(' ')[1];
+    const sql = 'delete from `groups` where `group_id` = ?';
+    connection.query(sql, [id], (err, result) => {
+
+        if (err) {
+            res.status(400).json(err);
+        }
+
+        if (result) {
+            res.status(200).json('Group removed by id');
+        }
     });
 }

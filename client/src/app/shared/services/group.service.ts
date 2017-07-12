@@ -45,4 +45,13 @@ export class GroupService {
         .map((res: Response) => res.json())
   }
 
+  removeGroup(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+    headers.append('Id', 'Id ' + id);
+
+    return this.http.delete(this.appConfig.urlServer + '/groups/group/' + id, {headers: headers})
+        .map((res: Response) => res.json())
+  }
+
 }

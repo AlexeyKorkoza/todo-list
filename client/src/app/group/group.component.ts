@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Group } from "../shared/models/group.model";
+import { GroupService } from '../shared/services/group.service';
+import { Group } from '../shared/models/group.model';
 
 @Component({
   selector: 'app-group',
@@ -10,7 +11,17 @@ import { Group } from "../shared/models/group.model";
 export class GroupComponent {
 
   @Input() group: Group;
+  @Input() index: number;
+  @Output() onChanged = new EventEmitter<number>();
 
-  constructor() { }
+  constructor(private groupService: GroupService) { }
+
+  remove(id: number, index: number) {
+    this.groupService.removeGroup(id).subscribe(
+        data => {
+          this.onChanged.emit(index);
+        }
+    )
+  }
 
 }
