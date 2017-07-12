@@ -6,9 +6,28 @@ const token = require('../middlewares/token');
 const router = express();
 
 router.get('/', token.required, getGroups);
+router.get('/group/:id', token.required, getGroup);
 router.post('/create', token.required, createGroup);
+router.put('/group/:id', token.required, updateGroup);
 
 module.exports = router;
+
+function getGroup(req, res) {
+
+    const id = req.params.id;
+    const sql = 'select * from `groups` where `group_id` = ?';
+    connection.query(sql, [id], (err, result) => {
+
+        if (err) {
+            res.status(400);
+        }
+
+        if (result && result.length === 1) {
+            res.status(200).json(result);
+        }
+
+    });
+}
 
 function getGroups(req, res) {
 
@@ -60,5 +79,22 @@ function createGroup(req, res) {
 
             });
         }
+    });
+}
+
+function updateGroup(req, res) {
+
+    const id = req.body.group_id;
+    const sql = 'update `groups` set `name` = ? where `group_id` = ?';
+    connection.query(sql, [req.body.name, id], (err, result) => {
+
+        if (err) {
+            res.status(400).json(err);
+        }
+
+        if (result) {
+            res.status(200);
+        }
+
     });
 }
