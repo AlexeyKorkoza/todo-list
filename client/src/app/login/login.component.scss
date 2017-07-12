@@ -1,6 +1,5 @@
-@import '../../variables';
+@import '../../mixin';
 
 .error {
-  font: bold 1.5em $font;
-  color: red;
+  @include error;
 }
