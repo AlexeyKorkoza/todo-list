@@ -17,7 +17,7 @@ exports.create_tables = function () {
 
     let createGroups = `create table if not exists Groups(
                           group_id int primary key auto_increment,
-                          name varchar(255) not null,
+                          name varchar(255) not null unique,
                           user_id int,
                           FOREIGN KEY (user_id) REFERENCES Users(user_id)
                           on update cascade

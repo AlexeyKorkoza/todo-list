@@ -36,7 +36,8 @@ export class EditorGroupComponent {
     this.message = '';
     this.groupService.save(group).subscribe(
         () => {
-          this.router.navigateByUrl('/');
+          this.message = 'Group was created successfully';
+          this.router.navigate(['/']);
         },
         err => {
           this.message = 'Group already was created';
