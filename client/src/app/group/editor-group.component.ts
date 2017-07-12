@@ -15,6 +15,7 @@ export class EditorGroupComponent {
   editorForm: any;
   url: string [];
   action: string;
+  message: string;
 
   constructor(
       private formBuilder: FormBuilder,
@@ -32,11 +33,15 @@ export class EditorGroupComponent {
   }
 
   save(group: Group) {
-      this.groupService.save(group, this.action).subscribe(
-          () => {
-            this.router.navigateByUrl('/');
-          }
-      )
+    this.message = '';
+    this.groupService.save(group).subscribe(
+        () => {
+          this.router.navigateByUrl('/');
+        },
+        err => {
+          this.message = 'Group already was created';
+        }
+    )
   }
 
 }

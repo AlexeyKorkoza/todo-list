@@ -14,12 +14,12 @@ export class GroupService {
       private appConfig: AppConfig,
       private jwtService: JwtService) {}
 
-  save(group: Group, action: string) {
+  save(group: Group) {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    if (action === 'create') {
-      return this.http.post(this.appConfig.urlServer + '/group/create', {headers: headers})
+    if (!group.group_id) {
+      return this.http.post(this.appConfig.urlServer + '/groups/create', group, {headers: headers})
           .map((res: Response) => res.json())
     }
   }
