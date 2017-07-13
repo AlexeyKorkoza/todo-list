@@ -66,6 +66,20 @@ export class TodoListComponent implements OnChanges, OnInit {
       setTimeout(() => {
           this.message = '';
       }, 1000);
+      if (this.todos.length === 0) {
+          this.message = 'Todos are not created';
+      }
+  }
+
+  onChangedExecute(index: number) {
+      this.todos.splice(index, 1);
+      this.message = 'Todo was done';
+      setTimeout(() => {
+          this.message = '';
+      }, 1000);
+      if (this.todos.length === 0) {
+          this.message = 'Todos are not created';
+      }
   }
 
 }
