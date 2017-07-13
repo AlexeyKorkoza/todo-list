@@ -1,6 +1,6 @@
 <div class="groups">
     <app-group class="group" *ngFor="let group of groups; let index = index" [group]="group" [index]="index"
-               (onChanged)="onChanged($event)">
+               (onChanged)="onChanged($event)" (onChangedGroup)="onChangedGroup($event)">
     </app-group>
 
     <div *ngIf="!groupsLoaded">

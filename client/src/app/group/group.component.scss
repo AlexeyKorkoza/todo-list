@@ -29,6 +29,10 @@
 .name {
   color: white;
   font: 2em $font;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 i {

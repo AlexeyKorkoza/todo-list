@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
+import { Subject, Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
 import { AppConfig } from '../appConfig';
@@ -9,10 +10,20 @@ import { Group } from '../models/group.model';
 @Injectable()
 export class GroupService {
 
+  private currentGroupName = new Subject<number>();
+
   constructor(
       private http: Http,
       private appConfig: AppConfig,
       private jwtService: JwtService) {}
+
+  setSelectingGroup(id: number) {
+     this.currentGroupName.next(id);
+  }
+
+  getSelectingGroup(): Observable<number> {
+    return this.currentGroupName.asObservable();
+  }
 
   save(group: Group) {
     const headers = new Headers();
@@ -25,6 +36,14 @@ export class GroupService {
       return this.http.put(this.appConfig.urlServer + '/groups/group/' + group.group_id, group, {headers: headers})
           .map((res: Response) => res.json())
     }
+  }
+
+  getFirstGroup() {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/groups/first', {headers: headers})
+        .map((res: Response) => res.json())
   }
 
   getGroups() {

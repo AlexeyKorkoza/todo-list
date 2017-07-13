@@ -6,6 +6,7 @@ const token = require('../middlewares/token');
 const router = express();
 
 router.get('/', token.required, getGroups);
+router.get('/first', token.required, getGroupFirst);
 router.get('/group/:id', token.required, getGroup);
 router.post('/create', token.required, createGroup);
 router.put('/group/:id', token.required, updateGroup);
@@ -28,6 +29,23 @@ function getGroup(req, res) {
         }
 
     });
+}
+
+function getGroupFirst(req, res) {
+
+    const sql = 'select * from `groups` limit 1';
+    connection.query(sql, (err, result) => {
+
+        if (err) {
+            res.status(400);
+        }
+
+        if (result && result.length === 1) {
+            res.status(200).json(result);
+        }
+
+    });
+
 }
 
 function getGroups(req, res) {

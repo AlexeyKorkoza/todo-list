@@ -10,6 +10,11 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component';
 import { EditorGroupComponent } from './group/editor-group.component';
+import { GroupListComponent } from './group/group-list.component';
+import { GroupComponent } from './group/group.component';
+import { EditorTodoComponent } from './todo/editor-todo.component';
+import { TodoComponent } from './todo/todo.component';
+import { TodoListComponent } from './todo/todo-list.component';
 
 import { UserService } from './shared/services/user.service';
 import { AuthService } from './shared/services/auth.service';
@@ -20,9 +25,6 @@ import { TodoService } from './shared/services/todo.service';
 import { AppConfig } from './shared/appConfig';
 
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
-import { GroupListComponent } from './group/group-list.component';
-import { GroupComponent } from './group/group.component';
-import { EditorTodoComponent } from './todo/editor-todo.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,7 +46,9 @@ const appRoutes: Routes = [
     EditorGroupComponent,
     GroupListComponent,
     GroupComponent,
-    EditorTodoComponent
+    EditorTodoComponent,
+    TodoComponent,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,

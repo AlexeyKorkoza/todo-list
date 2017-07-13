@@ -23,4 +23,12 @@ export class TodoService {
     }
   }
 
+  getTodosByGroup(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/todos/' + id, {headers: headers})
+        .map((res: Response) => res.json())
+  }
+
 }

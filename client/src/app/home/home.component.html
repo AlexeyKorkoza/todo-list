@@ -1,5 +1,6 @@
 <div *appshowAuthed="true">
     <div class="main-interface">
-        <app-group-list></app-group-list>
+        <app-group-list class="group_list" (onChangedGroup)="onChangedGroup($event)"></app-group-list>
+        <app-todo-list class="todo_list" [id]="id"></app-todo-list>
     </div>
 </div>

@@ -13,6 +13,7 @@ export class GroupComponent {
   @Input() group: Group;
   @Input() index: number;
   @Output() onChanged = new EventEmitter<number>();
+  @Output() onChangedGroup = new EventEmitter<number>();
 
   constructor(private groupService: GroupService) { }
 
@@ -22,6 +23,10 @@ export class GroupComponent {
           this.onChanged.emit(index);
         }
     )
+  }
+
+  select(id: number) {
+    this.groupService.setSelectingGroup(id);
   }
 
 }
