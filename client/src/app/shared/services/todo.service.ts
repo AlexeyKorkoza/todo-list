@@ -20,6 +20,9 @@ export class TodoService {
     if (!todo.todo_id) {
       return this.http.post(this.appConfig.urlServer + '/todos/create', todo, {headers: headers})
           .map((res: Response) => res.json())
+    } else {
+      return this.http.put(this.appConfig.urlServer + '/todos/todo/' + todo.todo_id, todo, {headers: headers})
+          .map((res: Response) => res.json())
     }
   }
 
@@ -28,6 +31,14 @@ export class TodoService {
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.get(this.appConfig.urlServer + '/todos/' + id, {headers: headers})
+        .map((res: Response) => res.json())
+  }
+
+  getTodo(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/todos/todo/' + id, {headers: headers})
         .map((res: Response) => res.json())
   }
 

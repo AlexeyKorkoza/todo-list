@@ -1,14 +1,14 @@
 <div class="container">
-  <h1>{{action}} group</h1>
+  <h1>{{action}} todo</h1>
   <form [formGroup]="editorForm">
     <div class="form-group"
-         [ngClass]="{'has-error': !editorForm.controls['group'].valid && editorForm.controls['group'].touched}">
+         [ngClass]="{'has-error': !editorForm.controls['group_id'].valid && editorForm.controls['group_id'].touched}">
       <label><b>Select group</b></label>
-      <select class="form-control" [formControl]="editorForm.controls['group']">
-        <option *ngFor="let group of groups" ngValue={{group.group_id}}>{{group.name}}</option>
+      <select class="form-control" formControlName="group_id" [formControl]="editorForm.controls['group_id']">
+        <option *ngFor="let group of groups" value="{{group.group_id}}" [selected]="group.name === selected">{{group.name}}</option>
       </select>
       <div
-          *ngIf="editorForm.controls['group'].hasError('required') && editorForm.controls['group'].touched"
+          *ngIf="editorForm.controls['group_id'].hasError('required') && editorForm.controls['group_id'].touched"
           class="alert alert-danger">Select group
       </div>
     </div>

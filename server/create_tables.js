@@ -27,7 +27,7 @@ exports.create_tables = function () {
     connection.query(createGroups);
 
     let createTodos = `create table if not exists Todos(
-                          task_id int primary key auto_increment,
+                          todo_id int primary key auto_increment,
                           name varchar(255) not null,
                           checked bit(1) not null,
                           group_id int,
