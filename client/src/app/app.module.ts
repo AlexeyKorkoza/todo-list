@@ -32,7 +32,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create_group', component: EditorGroupComponent },
   { path: 'edit/:id', component: EditorGroupComponent },
-  { path: 'create_todo', component: EditorTodoComponent }
+  { path: 'create_todo', component: EditorTodoComponent },
+  { path: 'edit_todo/:id', component: EditorTodoComponent }
 ];
 
 @NgModule({

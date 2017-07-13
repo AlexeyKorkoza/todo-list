@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 
-import { Group } from '../shared/models/group.model';
 import { GroupService } from '../shared/services/group.service';
 import { Todo } from '../shared/models/todo.model';
 import { TodoService } from '../shared/services/todo.service';
@@ -15,19 +14,22 @@ import { TodoService } from '../shared/services/todo.service';
 export class EditorTodoComponent implements OnInit {
 
   groups = [];
+  todo: Todo [];
   editorForm: any;
+  selected: string;
   action: string;
   message: string;
   url: string [];
 
   constructor(
       private router: Router,
+      private route: ActivatedRoute,
       private formBuilder: FormBuilder,
       private groupService: GroupService,
       private todoService: TodoService) {
     this.editorForm = formBuilder.group({
       'name': ['', [<any>Validators.required]],
-      'group': ['', [<any>Validators.required]]
+      'group_id': ['', [<any>Validators.required]]
     });
   }
 
@@ -39,15 +41,41 @@ export class EditorTodoComponent implements OnInit {
     );
 
     this.url = this.router.url.split('/');
+
     if (this.url.length === 2) {
       this.action = 'Create';
+    } else {
+      this.action = 'Edit';
+
+      this.route.params.subscribe(params => {
+        const id = +params['id'];
+
+        this.todoService.getTodo(id).subscribe(
+            data => {
+              this.todo = data;
+              this.todo[0].todo_id = data[0].todo_id;
+
+              (<FormControl>this.editorForm.controls['name']).patchValue(data[0].name, { onlySelf: true });
+
+              this.groups.forEach((item) => {
+                if (item.group_id === this.todo[0].group_id) {
+                  this.selected = item.name;
+                }
+              });
+            }
+        );
+      });
+
     }
   }
 
-  save(todo: any) {
+  save(todo: Todo) {
     this.message = '';
-    todo.group_id = todo.group;
-    todo.group = null;
+
+    if (this.todo[0].todo_id) {
+      todo.todo_id = this.todo[0].todo_id;
+    }
+
     this.todoService.save(todo).subscribe(
         data => {
             this.message = data;

@@ -2,6 +2,8 @@
 
 p {
   @include error;
+  margin-top: 50px;
+  font-size: 2.5em;
 }
 
 .todos {

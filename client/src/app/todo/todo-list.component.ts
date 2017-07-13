@@ -2,7 +2,7 @@ import { Component, OnChanges, SimpleChanges, OnInit, Input } from '@angular/cor
 
 import { Todo } from '../shared/models/todo.model';
 import { TodoService } from '../shared/services/todo.service';
-import {GroupService} from '../shared/services/group.service';
+import { GroupService } from '../shared/services/group.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -25,6 +25,7 @@ export class TodoListComponent implements OnChanges, OnInit {
             const current_id = id;
             this.todoService.getTodosByGroup(current_id).subscribe(
               data => {
+
                 if (data === 'Todos are not created') {
                   this.todos.splice(0, this.todos.length);
                   this.message = data;
@@ -33,6 +34,7 @@ export class TodoListComponent implements OnChanges, OnInit {
                   this.todos = data;
                   this.message = '';
                 }
+
               })
           }
       )
@@ -45,7 +47,13 @@ export class TodoListComponent implements OnChanges, OnInit {
             firstIdGroup = data[0].group_id;
             this.todoService.getTodosByGroup(firstIdGroup).subscribe(
                 todos => {
-                  this.todos = todos;
+                    if (todos === 'Todos are not created') {
+                        this.message = todos;
+
+                    } else {
+                        this.todos = todos;
+                        this.message = '';
+                    }
                 }
             );
           }
