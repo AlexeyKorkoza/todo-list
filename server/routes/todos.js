@@ -5,9 +5,31 @@ const connection = mysql.createConnection(nconf.get('db'));
 const token = require('../middlewares/token');
 const router = express();
 
+router.get('/:id', token.required, getTodosById);
 router.post('/create', token.required, createTodo);
 
 module.exports = router;
+
+function getTodosById(req, res) {
+
+    const id = req.params.id;
+    const sql = 'select * from `todos` where `group_id` = ?';
+    connection.query(sql, [id], (err, result) => {
+
+        if (err) {
+            res.status(400);
+        }
+
+        if (result && result.length === 0) {
+            res.status(200).json('Todos are not created');
+        }
+
+        if (result && result.length > 0) {
+            res.status(200).json(result);
+        }
+
+    });
+}
 
 function createTodo(req, res) {
 

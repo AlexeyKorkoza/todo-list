@@ -34,4 +34,8 @@ export class GroupListComponent implements OnInit {
         this.groupsLoaded = false;
     }
   }
+
+  onChangedGroup(id: number) {
+        console.log(id);
+  }
 }

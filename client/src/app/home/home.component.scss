@@ -1,3 +1,11 @@
 .main-interface {
   display: flex;
+
+  .group_list {
+    width: 30%;
+  }
+
+  .todo_list {
+    width: 70%;
+  }
 }
