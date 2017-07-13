@@ -39,17 +39,24 @@ export class EditorTodoComponent implements OnInit {
     );
 
     this.url = this.router.url.split('/');
-    if (this.url.length === 3) {
+    if (this.url.length === 2) {
       this.action = 'Create';
     }
   }
 
   save(todo: any) {
+    this.message = '';
     todo.group_id = todo.group;
     todo.group = null;
     this.todoService.save(todo).subscribe(
         data => {
-          this.router.navigateByUrl('/');
+            this.message = data;
+            setTimeout(() => {
+              this.router.navigateByUrl('/');
+            }, 2000);
+        },
+        err => {
+          this.message = 'Todo already was created';
         }
     )
   }
