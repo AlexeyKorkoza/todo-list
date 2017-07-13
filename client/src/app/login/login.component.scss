@@ -1,0 +1,5 @@
+@import '../../mixin';
+
+.error {
+  @include error;
+}

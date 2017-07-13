@@ -1,0 +1,8 @@
+<div class="todos">
+  <app-todo class="todo" *ngFor="let todo of todos; let index = index" [todo]="todo" [index]="index"
+            (onChanged)="onChanged($event)" (onChangedExecute)="onChangedExecute($event)">
+  </app-todo>
+
+  <p class="text-center">{{message}}</p>
+
+</div>

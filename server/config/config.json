@@ -1,0 +1,11 @@
+{
+  "host": "localhost",
+  "port": 8080,
+  "db": {
+    "host": "localhost",
+    "user": "root",
+    "password": "61Nx50qs",
+    "database": "Todo"
+  },
+  "jwtSecret": "Anaheim Ducks from California"
+}
