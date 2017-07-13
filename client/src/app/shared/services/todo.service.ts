@@ -42,4 +42,12 @@ export class TodoService {
         .map((res: Response) => res.json())
   }
 
+  removeTodo(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.delete(this.appConfig.urlServer + '/todos/todo/' + id, {headers: headers})
+        .map((res: Response) => res.json())
+  }
+
 }

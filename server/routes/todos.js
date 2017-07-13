@@ -9,6 +9,7 @@ router.get('/:id', token.required, getTodosById);
 router.get('/todo/:id', token.required, getTodoById);
 router.post('/create', token.required, createTodo);
 router.put('/todo/:id', token.required, updateTodo);
+router.delete('/todo/:id', token.required, removeTodo);
 
 module.exports = router;
 
@@ -125,6 +126,23 @@ function updateTodo(req, res) {
             });
         }
 
+    });
+
+}
+
+function removeTodo(req, res) {
+    
+    const id = req.params.id;
+    const sql = 'delete from `todos` where `todo_id` = ?';
+    connection.query(sql, [id], (err, result) => {
+
+        if (err) {
+            res.status(400).json(err);
+        }
+
+        if (result) {
+            res.status(200).json('Group removed by id');
+        }
     });
 
 }
