@@ -1,6 +1,6 @@
 <span class="name">{{todo.name}}</span>
 <div class="actions">
-    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+    <i class="fa fa-thumbs-up" aria-hidden="true" (click)="remove_execute(index, todo.todo_id)"></i>
     <i class="fa fa-pencil" aria-hidden="true" [routerLink]="['edit_todo/', todo.todo_id]"></i>
     <i class="fa fa-times" aria-hidden="true" (click)="remove(index, todo.todo_id)"></i>
 </div>

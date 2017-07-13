@@ -13,11 +13,17 @@ export class TodoComponent {
   @Input() todo: Todo;
   @Input() index: number;
   @Output () onChanged = new EventEmitter<number>();
+  @Output () onChangedExecute = new EventEmitter<number>();
 
   constructor(private todoService: TodoService) { }
 
   remove(index: number, id: number) {
     this.onChanged.emit(index);
+    this.todoService.removeTodo(id).subscribe();
+  }
+
+  remove_execute(index: number, id: number) {
+    this.onChangedExecute.emit(index);
     this.todoService.removeTodo(id).subscribe();
   }
 
