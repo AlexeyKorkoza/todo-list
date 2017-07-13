@@ -60,4 +60,12 @@ export class TodoListComponent implements OnChanges, OnInit {
       );
   }
 
+  onChanged(index: number) {
+      this.todos.splice(index, 1);
+      this.message = 'Todo was removed';
+      setTimeout(() => {
+          this.message = '';
+      }, 1000);
+  }
+
 }
