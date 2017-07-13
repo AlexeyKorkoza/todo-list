@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 
-import { Todo } from "../models/todo.model";
-import { AppConfig } from "../appConfig";
-import { JwtService } from "./jwt.service";
+import { Todo } from '../models/todo.model';
+import { AppConfig } from '../appConfig';
+import { JwtService } from './jwt.service';
 
 @Injectable()
 export class TodoService {
