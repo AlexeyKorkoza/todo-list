@@ -15,19 +15,22 @@ import { UserService } from './shared/services/user.service';
 import { AuthService } from './shared/services/auth.service';
 import { JwtService } from './shared/services/jwt.service';
 import { GroupService } from './shared/services/group.service';
+import { TodoService } from './shared/services/todo.service';
 
 import { AppConfig } from './shared/appConfig';
 
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { GroupListComponent } from './group/group-list.component';
 import { GroupComponent } from './group/group.component';
+import { EditorTodoComponent } from './todo/editor-todo.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create_group', component: EditorGroupComponent },
-  { path: 'edit/:id', component: EditorGroupComponent }
+  { path: 'edit/:id', component: EditorGroupComponent },
+  { path: 'create_todo', component: EditorTodoComponent }
 ];
 
 @NgModule({
@@ -40,7 +43,8 @@ const appRoutes: Routes = [
     LoginComponent,
     EditorGroupComponent,
     GroupListComponent,
-    GroupComponent
+    GroupComponent,
+    EditorTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,7 @@ const appRoutes: Routes = [
     AuthService,
     JwtService,
     GroupService,
+    TodoService,
     AppConfig
   ],
   bootstrap: [AppComponent]
