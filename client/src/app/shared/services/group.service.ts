@@ -18,7 +18,6 @@ export class GroupService {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    console.log(group);
     if (!group.group_id) {
       return this.http.post(this.appConfig.urlServer + '/groups/create', group, {headers: headers})
           .map((res: Response) => res.json())

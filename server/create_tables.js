@@ -26,7 +26,7 @@ exports.create_tables = function () {
 
     connection.query(createGroups);
 
-    let createTasks = `create table if not exists Tasks(
+    let createTodos = `create table if not exists Todos(
                           task_id int primary key auto_increment,
                           name varchar(255) not null,
                           checked bit(1) not null,
@@ -36,6 +36,6 @@ exports.create_tables = function () {
                           on delete cascade
                       ) engine=innodb character set=utf8`;
 
-    connection.query(createTasks);
+    connection.query(createTodos);
 
 };
