@@ -4,3 +4,6 @@
         <app-todo-list class="todo_list" [id]="id"></app-todo-list>
     </div>
 </div>
+<div *appshowAuthed="false">
+    <p class="text-center">Please <a [routerLink]="['login']">Log In</a> or <a [routerLink]="['register']">Sign Up</a></p>
+</div>

@@ -26,13 +26,18 @@ export class TodoListComponent implements OnChanges, OnInit {
             this.todoService.getTodosByGroup(current_id).subscribe(
               data => {
 
-                if (data === 'Todos are not created') {
-                  this.todos.splice(0, this.todos.length);
-                  this.message = data;
-
+                if (data === 'Todos are not created' && this.todos === undefined ) {
+                    this.message = data;
+                } else if (data === 'Todos are not created' && this.todos !== undefined ) {
+                    this.todos.splice(0, this.todos.length);
+                    this.message = data;
                 } else {
-                  this.todos = data;
-                  this.message = '';
+                    this.todos = data;
+                    this.message = '';
+                }
+
+                if (data === 'Todo removed' && this.todos.length === 0) {
+                    this.message = data;
                 }
 
               })
@@ -49,7 +54,6 @@ export class TodoListComponent implements OnChanges, OnInit {
                 todos => {
                     if (todos === 'Todos are not created') {
                         this.message = todos;
-
                     } else {
                         this.todos = todos;
                         this.message = '';
