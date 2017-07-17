@@ -141,7 +141,7 @@ function removeTodo(req, res) {
         }
 
         if (result) {
-            res.status(200).json('Group removed by id');
+            res.status(200).json('Todo removed');
         }
     });
 

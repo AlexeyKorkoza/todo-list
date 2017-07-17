@@ -1,3 +1,5 @@
+@import '../../mixin';
+
 .main-interface {
   display: flex;
 
@@ -7,5 +9,18 @@
 
   .todo_list {
     width: 70%;
+  }
+
+}
+
+p {
+  @include error;
+  font-size: 2.5em;
+  margin-top: 100px;
+
+  span {
+    text-decoration: underline;
+    color: blue;
+    font-weight: bold;
   }
 }

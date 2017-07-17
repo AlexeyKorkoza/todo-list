@@ -10,7 +10,6 @@ export class HomeComponent {
   id: number;
 
   onChangedGroup(id: number) {
-    console.log(id);
     this.id = id;
   }
 

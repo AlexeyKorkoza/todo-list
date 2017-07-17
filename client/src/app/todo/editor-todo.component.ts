@@ -29,7 +29,7 @@ export class EditorTodoComponent implements OnInit {
       private todoService: TodoService) {
     this.editorForm = formBuilder.group({
       'name': ['', [<any>Validators.required]],
-      'group_id': ['', [<any>Validators.required]]
+      'group_id': ['']
     });
   }
 
@@ -72,8 +72,12 @@ export class EditorTodoComponent implements OnInit {
   save(todo: Todo) {
     this.message = '';
 
-    if (this.todo[0].todo_id) {
+    if (this.todo !== undefined) {
       todo.todo_id = this.todo[0].todo_id;
+    }
+
+    if (todo.group_id == 0) {
+        todo.group_id = this.todo[0].group_id;
     }
 
     this.todoService.save(todo).subscribe(
