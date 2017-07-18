@@ -42,6 +42,7 @@ exports.create_tables = function () {
                           member_id int primary key auto_increment,
                           group_id int,
                           user_id int,
+                          status varchar(255),
                           foreign key (group_id) references Groups(group_id)
                           on update cascade
                           on delete cascade,

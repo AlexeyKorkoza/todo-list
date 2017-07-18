@@ -93,7 +93,21 @@ function createGroup(req, res) {
                 }
 
                 if (result) {
-                    res.status(200);
+                    const member = {
+                        'group_id': result.insertId,
+                        'user_id': group.user_id,
+                        'status': 'author'
+                    };
+                    const sqlMembers = 'insert into `members` SET ?';
+                    connection.query(sqlMembers, [member], (err, result) =>{
+                        if (err) {
+                            res.status(400).json(err);
+                        }
+
+                        if (result) {
+                            res.status(200).json('Group was created');
+                        }
+                    })
                 }
 
             });
@@ -112,7 +126,7 @@ function updateGroup(req, res) {
         }
 
         if (result) {
-            res.status(200);
+            res.status(200).json('Group was updated');
         }
 
     });
