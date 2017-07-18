@@ -1,0 +1,12 @@
+@import '../../variables';
+
+ul li {
+  list-style: none;
+  font: 1.5em $font;
+  color: greenyellow;
+}
+
+h1 {
+  font: bold 2em $font;
+  color: blueviolet;
+}

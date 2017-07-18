@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <h1>Check user:</h1>
+            <select class="form-control">
+                <option *ngFor="let user of users" value={{user.user_id}}>{{user.username}}</option>
+            </select>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <h1>Members have access to group</h1>
+            <ul>
+                <li *ngFor="let member of members">{{member.username}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

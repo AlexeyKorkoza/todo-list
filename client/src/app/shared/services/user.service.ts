@@ -27,4 +27,12 @@ export class UserService {
         .map((res: Response) => res.json())
   }
 
+  getAllUsers() {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/users', { headers: headers })
+        .map((res: Response) => res.json())
+  }
+
 }

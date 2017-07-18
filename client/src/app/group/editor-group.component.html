@@ -11,6 +11,9 @@
       </div>
     </div>
     <div class="form-group">
+      <a [routerLink]="['member']" class="btn btn-success">Access to group</a>
+    </div>
+    <div class="form-group">
       <button type="submit" (click)="save(editorForm.value)" [disabled]="!editorForm.valid"
               class="btn btn-success">Save
       </button>
