@@ -19,7 +19,6 @@ exports.create_tables = function () {
                           group_id int primary key auto_increment,
                           name varchar(255) not null unique,
                           user_id int,
-                          members varchar(255),
                           FOREIGN KEY (user_id) REFERENCES Users(user_id)
                           on update cascade
                           on delete cascade
@@ -38,5 +37,19 @@ exports.create_tables = function () {
                       ) engine=innodb character set=utf8`;
 
     connection.query(createTodos);
+
+    let createMembers = `create table if not exists Members(
+                          member_id int primary key auto_increment,
+                          group_id int,
+                          user_id int,
+                          foreign key (group_id) references Groups(group_id)
+                          on update cascade
+                          on delete cascade,
+                          foreign key (user_id) references Users(user_id)
+                          on update cascade
+                          on delete cascade
+                      ) engine=innodb character set=utf8`;
+
+    connection.query(createMembers);
 
 };
