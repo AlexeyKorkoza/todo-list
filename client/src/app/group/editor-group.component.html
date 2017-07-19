@@ -1,26 +1,28 @@
 <div class="container">
-  <h1>{{action}} group</h1>
-  <form [formGroup]="editorForm">
-    <div class="form-group"
-         [ngClass]="{'has-error': !editorForm.controls['name'].valid && editorForm.controls['name'].touched}">
-      <label><b>Name of group</b></label>
-      <input type="text" class="form-control" [formControl]="editorForm.controls['name']" placeholder="name">
-      <div
-          *ngIf="editorForm.controls['name'].hasError('required') && editorForm.controls['name'].touched"
-          class="alert alert-danger">Input name
-      </div>
-    </div>
-    <div class="form-group">
-      <a [routerLink]="['member']" class="btn btn-success">Access to group</a>
-    </div>
-    <div class="form-group">
-      <button type="submit" (click)="save(editorForm.value)" [disabled]="!editorForm.valid"
-              class="btn btn-success">Save
-      </button>
-      <a [routerLink]="['/']" class="btn btn-danger">Back</a>
-    </div>
-    <div class="form-group">
-      <p class="error">{{message}}</p>
-    </div>
-  </form>
+    <h1>{{action}} group</h1>
+    <form [formGroup]="editorForm">
+        <div class="form-group"
+             [ngClass]="{'has-error': !editorForm.controls['name'].valid && editorForm.controls['name'].touched}">
+            <label><b>Name of group</b></label>
+            <input type="text" class="form-control" [formControl]="editorForm.controls['name']" placeholder="name">
+            <div
+                *ngIf="editorForm.controls['name'].hasError('required') && editorForm.controls['name'].touched"
+                class="alert alert-danger">Input name
+            </div>
+        </div>
+        <div *ngIf="action==='Edit'">
+            <div class="form-group">
+                <a [routerLink]="['member']" class="btn btn-success">Access to group</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" (click)="save(editorForm.value)" [disabled]="!editorForm.valid"
+                    class="btn btn-success">Save
+            </button>
+            <a [routerLink]="['/']" class="btn btn-danger">Back</a>
+        </div>
+        <div class="form-group">
+            <p class="error">{{message}}</p>
+        </div>
+    </form>
 </div>

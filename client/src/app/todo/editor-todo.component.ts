@@ -34,7 +34,7 @@ export class EditorTodoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(
+    this.groupService.getGroupsAccessingToUser().subscribe(
         data => {
           this.groups = data;
         }

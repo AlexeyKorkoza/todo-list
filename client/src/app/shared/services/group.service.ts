@@ -46,11 +46,20 @@ export class GroupService {
         .map((res: Response) => res.json())
   }
 
-  getGroups() {
+  getGroupsAccessingToUser() {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    return this.http.get(this.appConfig.urlServer + '/groups', {headers: headers})
+    return this.http.get(this.appConfig.urlServer + '/groups/access', {headers: headers})
+        .map((res: Response) => res.json())
+
+  }
+
+  getGroupsOfUser() {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/groups/user', {headers: headers})
         .map((res: Response) => res.json())
 
   }

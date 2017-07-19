@@ -5,7 +5,8 @@ const connection = mysql.createConnection(nconf.get('db'));
 const token = require('../middlewares/token');
 const router = express();
 
-router.get('/', token.required, getGroups);
+router.get('/access', token.required, getGroupsAccessingToUser);
+router.get('/user', token.required, getGroupsOfUser);
 router.get('/first', token.required, getGroupFirst);
 router.get('/group/:id', token.required, getGroup);
 router.post('/create', token.required, createGroup);
@@ -48,11 +49,32 @@ function getGroupFirst(req, res) {
 
 }
 
-function getGroups(req, res) {
+function getGroupsOfUser(req, res) {
 
-    const sql = 'select * from `groups` where `user_id` = ?';
-    connection.query(sql, [req.payload.id], (err, results) => {
+  const id = req.payload.id;
+  const sql = 'select g.name, m.status, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
+  connection.query(sql, [id], (err, results) => {
+    if (err) {
+      res.status(400);
+    }
 
+    if (results && results.length > 0) {
+      console.log(results);
+      res.status(200).json(results);
+    }
+
+    if (results && results.length === 0) {
+      console.log(results);
+      res.status(200).json('Empty');
+    }
+  });
+}
+
+function getGroupsAccessingToUser(req, res) {
+
+    const id = req.payload.id;
+    const sql = 'select g.name, g.group_id, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
+    connection.query(sql, [id], (err, results) => {
         if (err) {
             res.status(400);
         }
