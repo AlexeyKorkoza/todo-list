@@ -50,9 +50,15 @@ export class EditorGroupComponent implements OnInit {
       group.group_id = this.id;
     }
     this.groupService.save(group).subscribe(
-        () => {
-          this.message = 'Group was saved successfully';
-          this.router.navigate(['/']);
+        data => {
+            if (data === 'Group was updated') {
+                this.message = 'Group was updated';
+            } else {
+                this.message = 'Group was created';
+            }
+            setTimeout(() => {
+                this.router.navigate(['/']);
+            }, 2000);
         },
         err => {
           this.message = 'Group already exists';

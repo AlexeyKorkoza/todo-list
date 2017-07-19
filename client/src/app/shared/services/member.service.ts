@@ -1,38 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
 
 import { AppConfig } from '../appConfig';
-import { User } from '../models/user.model';
-import { JwtService } from '../services/jwt.service';
+import { JwtService } from './jwt.service';
 
 @Injectable()
-export class UserService {
+export class MemberService {
 
   constructor(
       private http: Http,
       private appConfig: AppConfig,
-      private jwtService: JwtService) {}
+      private jwtService: JwtService) { }
 
-  create(user: User) {
-    return this.http.post(this.appConfig.urlServer + '/auth/signup', user)
-        .map((res: Response) => res.json())
-  }
-
-  getUser() {
+  getMembersById(id: number) {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    return this.http.get(this.appConfig.urlServer + '/users/user', { headers: headers })
+    return this.http.get(this.appConfig.urlServer + '/members/' + id, { headers: headers })
         .map((res: Response) => res.json())
   }
 
-  getAllUsers() {
+  addMember(member: any) {
     const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    return this.http.get(this.appConfig.urlServer + '/users', { headers: headers })
+    return this.http.post(this.appConfig.urlServer + '/members/add', member, { headers: headers })
         .map((res: Response) => res.json())
   }
 
+  removeMember(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.delete(this.appConfig.urlServer + '/members/' + id, { headers: headers })
+        .map((res: Response) => res.json())
+  }
 }

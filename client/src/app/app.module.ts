@@ -15,12 +15,14 @@ import { GroupComponent } from './group/group.component';
 import { EditorTodoComponent } from './todo/editor-todo.component';
 import { TodoComponent } from './todo/todo.component';
 import { TodoListComponent } from './todo/todo-list.component';
+import { MemberComponent } from './member/member.component';
 
 import { UserService } from './shared/services/user.service';
 import { AuthService } from './shared/services/auth.service';
 import { JwtService } from './shared/services/jwt.service';
 import { GroupService } from './shared/services/group.service';
 import { TodoService } from './shared/services/todo.service';
+import { MemberService } from './shared/services/member.service';
 
 import { AppConfig } from './shared/appConfig';
 
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create_group', component: EditorGroupComponent },
   { path: 'edit/:id', component: EditorGroupComponent },
+  { path: 'edit/:id/member', component: MemberComponent },
   { path: 'create_todo', component: EditorTodoComponent },
   { path: 'edit_todo/:id', component: EditorTodoComponent }
 ];
@@ -49,7 +52,8 @@ const appRoutes: Routes = [
     GroupComponent,
     EditorTodoComponent,
     TodoComponent,
-    TodoListComponent
+    TodoListComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,7 @@ const appRoutes: Routes = [
     JwtService,
     GroupService,
     TodoService,
+    MemberService,
     AppConfig
   ],
   bootstrap: [AppComponent]
