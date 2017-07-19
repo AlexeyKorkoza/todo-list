@@ -18,6 +18,7 @@ export class GroupListComponent implements OnInit {
   ngOnInit() {
     this.groupService.getGroupsOfUser().subscribe(
         data => {
+            console.log(data);
             if (data === 'Empty') {
                 this.groupsLoaded = false;
             } else {
