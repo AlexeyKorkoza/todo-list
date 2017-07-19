@@ -52,7 +52,7 @@ function getGroupFirst(req, res) {
 function getGroupsOfUser(req, res) {
 
     const id = req.payload.id;
-    const sql = 'select g.name, m.status, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
+    const sql = 'select g.name, g.group_id, m.status, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
     connection.query(sql, [id], (err, results) => {
         if (err) {
             res.status(400);
