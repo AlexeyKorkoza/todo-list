@@ -1,10 +1,29 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6">
-            <h1>Check user:</h1>
-            <select class="form-control">
-                <option *ngFor="let user of users" value={{user.user_id}}>{{user.username}}</option>
-            </select>
+            <form [formGroup]="memberForm">
+                <div class="form-group"
+                     [ngClass]="{'has-error': !memberForm.controls['username'].valid && memberForm.controls['username'].touched}">
+                    <label><b>Check user and his in a group:</b></label>
+                    <select class="form-control" id="members" [formControl]="memberForm.controls['username']">
+                        <option *ngFor="let user of users" value={{user.username}}>{{user.username}}</option>
+                    </select>
+                    <div
+                        *ngIf="memberForm.controls['username'].hasError('required') && memberForm.controls['username'].touched"
+                        class="alert alert-danger">Select username
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" [disabled]="!memberForm.valid"
+                            (click)="save(memberForm)">
+                        Add access
+                    </button>
+                    <a class="btn btn-danger" [routerLink]="['/']">Back</a>
+                </div>
+                <div class="form-group">
+                    <p>{{message}}</p>
+                </div>
+            </form>
         </div>
         <div class="col-xs-12 col-md-6">
             <h1>Members have access to group</h1>
