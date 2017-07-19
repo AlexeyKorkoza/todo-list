@@ -56,7 +56,7 @@ export class EditorGroupComponent implements OnInit {
             } else {
                 this.message = 'Group was created';
             }
-            setTimeout(()=> {
+            setTimeout(() => {
                 this.router.navigate(['/']);
             }, 2000);
         },

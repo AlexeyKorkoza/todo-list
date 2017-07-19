@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 import { MemberService } from '../shared/services/member.service';
-import { Member } from "../shared/models/member.model";
+import { Member } from '../shared/models/member.model';
 
 @Component({
   selector: 'app-access',

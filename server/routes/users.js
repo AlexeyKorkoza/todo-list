@@ -22,7 +22,7 @@ function getAllUsers(req, res) {
         if (results && results.length > 0) {
             res.status(200).json(results);
         }
-    })
+    });
 }
 
 function getUser(req, res) {

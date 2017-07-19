@@ -51,23 +51,21 @@ function getGroupFirst(req, res) {
 
 function getGroupsOfUser(req, res) {
 
-  const id = req.payload.id;
-  const sql = 'select g.name, m.status, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
-  connection.query(sql, [id], (err, results) => {
-    if (err) {
-      res.status(400);
-    }
+    const id = req.payload.id;
+    const sql = 'select g.name, m.status, m.member_id from members m inner join groups g on g.group_id = m.group_id where m.user_id = ?';
+    connection.query(sql, [id], (err, results) => {
+        if (err) {
+            res.status(400);
+        }
 
-    if (results && results.length > 0) {
-      console.log(results);
-      res.status(200).json(results);
-    }
+        if (results && results.length > 0) {
+            res.status(200).json(results);
+        }
 
-    if (results && results.length === 0) {
-      console.log(results);
-      res.status(200).json('Empty');
-    }
-  });
+        if (results && results.length === 0) {
+            res.status(200).json('Empty');
+        }
+    });
 }
 
 function getGroupsAccessingToUser(req, res) {
@@ -129,7 +127,7 @@ function createGroup(req, res) {
                         if (result) {
                             res.status(200).json('Group was created');
                         }
-                    })
+                    });
                 }
 
             });
