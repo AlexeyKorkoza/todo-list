@@ -7,13 +7,14 @@ const router = express();
 
 router.get('/:id', token.required, getGroupsById);
 router.post('/add', token.required, addMember);
+router.delete('/:id', token.required, removeMember);
 
 module.exports = router;
 
 function getGroupsById(req, res) {
 
   const id = req.params.id;
-  const sql = 'select users.username, members.member_id, members.user_id from `members`' +
+  const sql = 'select users.username, members.status, members.member_id, members.user_id from `members`' +
     'inner join `users` on members.user_id = users.user_id where `group_id`= ?';
   connection.query(sql, [id], (err, result) => {
 
@@ -66,5 +67,22 @@ function addMember(req, res) {
       })
     }
   })
+}
+
+function removeMember(req, res) {
+
+  const id = req.params.id;
+  console.log(id);
+  const sql = 'delete from `members` where `member_id` = ?';
+  connection.query(sql, [id], (err, result) => {
+
+    if (err) {
+      res.status(400).json(err);
+    }
+
+    if (result) {
+      res.status(200).json('Member was removed');
+    }
+  });
 
 }

@@ -27,4 +27,12 @@ export class MemberService {
     return this.http.post(this.appConfig.urlServer + '/members/add', member, { headers: headers })
         .map((res: Response) => res.json())
   }
+
+  removeMember(id: number) {
+    const headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.delete(this.appConfig.urlServer + '/members/' + id, { headers: headers })
+        .map((res: Response) => res.json())
+  }
 }

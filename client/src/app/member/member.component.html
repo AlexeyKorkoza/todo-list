@@ -27,8 +27,13 @@
         </div>
         <div class="col-xs-12 col-md-6">
             <h1>Members have access to group</h1>
-            <ul>
-                <li *ngFor="let member of members">{{member.username}}</li>
+            <ul class="members-list">
+                <li *ngFor="let member of members; let index = index">
+                    <span>{{member.username}}</span><span class="status">({{member.status}})</span>
+                        <div *ngIf="member.status !== 'author'">
+                    <i class="fa fa-times" aria-hidden="true" (click)="remove(member.member_id, index)"></i>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

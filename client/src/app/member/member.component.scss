@@ -16,7 +16,33 @@ b {
   font: bold 2em $font;
 }
 
-
 p {
   @include error;
+}
+
+.members-list {
+
+  li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    .status {
+      display: block;
+      margin-left: 5px;
+      text-decoration: underline;
+      color: blue;
+    }
+
+    i {
+      display: block;
+      margin-left: 10px;
+      color: blue;
+      cursor: pointer;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }

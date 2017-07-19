@@ -71,12 +71,28 @@ export class MemberComponent implements OnInit {
               'member_id': result.member_id,
               'username': data.value.username
             };
+            this.message = 'This user was added successfully';
             setTimeout(() => {
-              this.message = 'This user was added successfully';
+              this.message = '';
             }, 2500)
           }
         }
     );
+  }
+
+  remove(id: number, index: number) {
+
+    this.memberService.removeMember(id).subscribe(
+        data => {
+          if (data === 'Member was removed') {
+            this.members.splice(index, 1);
+            this.message = 'Member was removed';
+            setTimeout(() => {
+              this.message = '';
+            }, 2500)
+          }
+        }
+    )
   }
 
 }
